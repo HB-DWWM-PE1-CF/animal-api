@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\SpeciesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SpeciesRepository::class)]
+#[ApiResource]
 class Species
 {
     #[ORM\Id]
@@ -19,7 +21,7 @@ class Species
     private $name;
 
     #[ORM\Column(type: 'date', nullable: true)]
-    #[Assert\Date]
+    #[Assert\Type(\DateTimeInterface::class)]
     private $discoveredSince;
 
     public function getId(): ?int

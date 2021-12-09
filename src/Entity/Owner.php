@@ -25,7 +25,7 @@ class Owner
     private $lastName;
 
     #[ORM\Column(type: 'date', nullable: true)]
-    #[Assert\Date]
+    #[Assert\Type(\DateTimeInterface::class)]
     private $birthAt;
 
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Animal::class)]
