@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SpeciesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SpeciesRepository::class)]
 class Species
@@ -14,9 +15,11 @@ class Species
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank, Assert\Length(max: 255)]
     private $name;
 
     #[ORM\Column(type: 'date', nullable: true)]
+    #[Assert\Date]
     private $discoveredSince;
 
     public function getId(): ?int

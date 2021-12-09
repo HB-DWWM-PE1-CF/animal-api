@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AnimalRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
 #[ApiResource]
@@ -14,10 +15,12 @@ class Animal
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank, Assert\Length(max: 255)]
     private $name;
 
     #[ORM\ManyToOne(targetEntity: Species::class)]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\NotBlank]
     private $species;
 
     #[ORM\ManyToOne(targetEntity: Owner::class, inversedBy: 'animals')]

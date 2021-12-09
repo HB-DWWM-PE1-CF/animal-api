@@ -7,6 +7,7 @@ use App\Repository\OwnerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OwnerRepository::class)]
 #[ApiResource]
@@ -16,12 +17,15 @@ class Owner
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank, Assert\Length(max: 255)]
     private $firstName;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank, Assert\Length(max: 255)]
     private $lastName;
 
     #[ORM\Column(type: 'date', nullable: true)]
+    #[Assert\Date]
     private $birthAt;
 
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Animal::class)]
