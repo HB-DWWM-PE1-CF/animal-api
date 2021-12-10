@@ -8,7 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    itemOperations: ['get', 'put', 'delete'],
+)]
 class Animal
 {
     #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]
