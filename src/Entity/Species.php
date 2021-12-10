@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\SpeciesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -26,6 +28,15 @@ class Species
     #[ORM\Column(type: 'date', nullable: true)]
     #[Assert\Type(\DateTimeInterface::class)]
     private $discoveredSince;
+
+    #[ORM\OneToMany(targetEntity: Race::class, mappedBy: 'species')]
+    #[ApiSubresource]
+    private Collection $races;
+
+    public function __construct()
+    {
+        $this->races = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -52,6 +63,36 @@ class Species
     public function setDiscoveredSince(?\DateTimeInterface $discoveredSince): self
     {
         $this->discoveredSince = $discoveredSince;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Race[]
+     */
+    public function getRaces(): Collection
+    {
+        return $this->races;
+    }
+
+    public function addRace(Race $race): self
+    {
+        if (!$this->races->contains($race)) {
+            $this->races[] = $race;
+            $race->setSpecies($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRace(Race $race): self
+    {
+        if ($this->races->removeElement($race)) {
+            // set the owning side to null (unless already changed)
+            if ($race->getSpecies() === $this) {
+                $race->setSpecies(null);
+            }
+        }
 
         return $this;
     }

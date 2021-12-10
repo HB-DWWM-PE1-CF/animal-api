@@ -1,0 +1,5 @@
+App\Entity\Race:
+    races:{1..600}:
+        species: '@species*'
+        name: '@self->species.name <word()>'
+        discoveredSince: '80%? <dateTimeBetween("0000-01-01", "now")>'

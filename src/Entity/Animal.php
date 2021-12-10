@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AnimalRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -31,6 +33,14 @@ class Animal
     #[ORM\Column(type: 'string', length: 1)]
     #[Assert\NotBlank, Assert\Choice(['m', 'f', 'o'])]
     private $gender;
+
+    #[ORM\ManyToMany(targetEntity: Race::class)]
+    private $races;
+
+    public function __construct()
+    {
+        $this->races = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -82,6 +92,30 @@ class Animal
     public function setGender(string $gender): self
     {
         $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Race[]
+     */
+    public function getRaces(): Collection
+    {
+        return $this->races;
+    }
+
+    public function addRace(Race $race): self
+    {
+        if (!$this->races->contains($race)) {
+            $this->races[] = $race;
+        }
+
+        return $this;
+    }
+
+    public function removeRace(Race $race): self
+    {
+        $this->races->removeElement($race);
 
         return $this;
     }
