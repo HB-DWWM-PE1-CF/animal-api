@@ -2,6 +2,7 @@ api_platform:
     title: 'Animal API'
     description: 'blabla'
     version: '0.1.0'
+    path_segment_name_generator: 'api_platform.path_segment_name_generator.dash'
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
     patch_formats:
