@@ -2,3 +2,11 @@ App\Entity\Species:
     species{1..30}:
         name (unique): '<animal()>'
         discoveredSince: '80%? <dateTimeBetween("0000-01-01", "now")>'
+
+    no_animal_species{1..30}:
+        name (unique): '<animal()>'
+        discoveredSince: '80%? <dateTimeBetween("0000-01-01", "now")>'
+
+    species_cat:
+        name: 'Chat'
+        discoveredSince: '80%? <dateTimeBetween("0000-01-01", "now")>'
