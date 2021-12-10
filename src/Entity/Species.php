@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use App\Repository\SpeciesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -14,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     collectionOperations: ['get'],
     itemOperations: ['get'],
 )]
+#[ApiFilter(DateFilter::class, properties: ['discoveredSince'])]
 class Species
 {
     #[ORM\Id]
