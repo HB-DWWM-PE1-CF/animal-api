@@ -7,6 +7,6 @@ App\Entity\Species:
         name (unique): '<animal()>'
         discoveredSince: '80%? <dateTimeBetween("0000-01-01", "now")>'
 
-    species_cat:
-        name: 'Chat'
-        discoveredSince: '80%? <dateTimeBetween("0000-01-01", "now")>'
+#    species_cat:
+#        name: 'Chat'
+#        discoveredSince: '80%? <dateTimeBetween("0000-01-01", "now")>'
