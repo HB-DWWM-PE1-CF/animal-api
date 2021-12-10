@@ -1,6 +1,6 @@
 App\Entity\Animal:
-    animal{1..100}:
-        name: '<word()>'
+    animal{1..1000}:
+        name: '<firstName()>'
         species: '@species*'
         owner: '70%? @owner*'
         gender: '<randomElement(["f", "m", "o"])>'
