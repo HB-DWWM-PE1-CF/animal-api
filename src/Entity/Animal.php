@@ -26,6 +26,10 @@ class Animal
     #[ORM\ManyToOne(targetEntity: Owner::class, inversedBy: 'animals')]
     private $owner;
 
+    #[ORM\Column(type: 'string', length: 1)]
+    #[Assert\NotBlank, Assert\Choice(['m', 'f', 'o'])]
+    private $gender;
+
 
     public function getId(): ?int
     {
@@ -64,6 +68,18 @@ class Animal
     public function setOwner(?Owner $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(string $gender): self
+    {
+        $this->gender = $gender;
 
         return $this;
     }

@@ -3,3 +3,4 @@ App\Entity\Animal:
         name: '<word()>'
         species: '@species*'
         owner: null
+        gender: '<randomElement(["f", "m", "o"])>'
