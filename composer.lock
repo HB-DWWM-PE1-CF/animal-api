@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b27cb89c09369b863d2ee76e86a87223",
+    "content-hash": "1db343c36601dcc845975ff41bb1312b",
     "packages": [
         {
             "name": "api-platform/core",
@@ -8136,6 +8136,57 @@
                 }
             ],
             "time": "2021-09-20T21:51:43+00:00"
+        },
+        {
+            "name": "edwindayot/faker-provider-animals",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WedgeSama/Faker-Provider-Animals.git",
+                "reference": "76c1e48fe28cba4e1f20fbc27212e755840b2b1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WedgeSama/Faker-Provider-Animals/zipball/76c1e48fe28cba4e1f20fbc27212e755840b2b1c",
+                "reference": "76c1e48fe28cba4e1f20fbc27212e755840b2b1c",
+                "shasum": ""
+            },
+            "require": {
+                "fakerphp/faker": "^1.0",
+                "php": "^5.3.3|^7.0|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "FakerProviderAnimals\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "FakerProviderAnimals\\Test\\": "test/FakerProviderAnimals/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Edwin Dayot"
+                }
+            ],
+            "description": "Animals names provider for Faker.",
+            "keywords": [
+                "animals",
+                "faker",
+                "provider"
+            ],
+            "support": {
+                "source": "https://github.com/WedgeSama/Faker-Provider-Animals/tree/2.0.0"
+            },
+            "time": "2021-12-09T13:39:01+00:00"
         },
         {
             "name": "fakerphp/faker",
