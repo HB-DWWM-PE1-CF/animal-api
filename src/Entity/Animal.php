@@ -39,7 +39,7 @@ class Animal
     #[Assert\NotBlank, Assert\Choice(['m', 'f', 'o'])]
     private $gender;
 
-    #[ORM\ManyToMany(targetEntity: Race::class)]
+    #[ORM\OneToMany(targetEntity: AnimalRace::class, mappedBy: 'animal')]
     private $races;
 
     public function __construct()
@@ -102,14 +102,14 @@ class Animal
     }
 
     /**
-     * @return Collection|Race[]
+     * @return Collection|AnimalRace[]
      */
     public function getRaces(): Collection
     {
         return $this->races;
     }
 
-    public function addRace(Race $race): self
+    public function addRace(AnimalRace $race): self
     {
         if (!$this->races->contains($race)) {
             $this->races[] = $race;
@@ -118,7 +118,7 @@ class Animal
         return $this;
     }
 
-    public function removeRace(Race $race): self
+    public function removeRace(AnimalRace $race): self
     {
         $this->races->removeElement($race);
 
