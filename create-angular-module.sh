@@ -16,7 +16,7 @@ find "$MODULE_DIRECTORY" -type f -exec sed -i -e "s/hydralast/'hydra:last'/g" {}
 find "$MODULE_DIRECTORY" -type f -exec sed -i -e "s/hydranext/'hydra:next'/g" {} \;
 find "$MODULE_DIRECTORY" -type f -exec sed -i -e "s/hydraprevious/'hydra:previous'/g" {} \;
 find "$MODULE_DIRECTORY" -type f -exec sed -i -e "s/hydraprevious/'hydra:previous'/g" {} \;
-find "$MODULE_DIRECTORY" -type f -exec sed -i -e "1N;N; s/readonly context[?]: string [|] any [|] null;\s*readonly id[?]: string;\s*\n/FOOBAR/gm" {} \;
+find "$MODULE_DIRECTORY" -type f -exec sed -i -e "s/200-hydra-/-200-hydra-/g" {} \;
 find "$MODULE_DIRECTORY" -type f -name "*jsonld*" -exec sed -i -e "s/readonly context[?]: string [|] any [|] null;/readonly '@context?': string | any | null;/g" {} \;
 find "$MODULE_DIRECTORY" -type f -name "*jsonld*" -exec sed -i -e "s/readonly type[?]: string;/readonly '@type'?: string;/g" {} \;
 find "$MODULE_DIRECTORY" -type f -name "*jsonld*" -exec sed -i -e "s/readonly id[?]: string;/readonly '@id'?: string;/g" {} \;
