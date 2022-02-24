@@ -22,7 +22,7 @@ You should get a table like bellow.
 │ Version │          Directory          │ PHP CLI │ PHP FPM │   PHP CGI   │ Server  │ System? │
 ├─────────┼─────────────────────────────┼─────────┼─────────┼─────────────┼─────────┼─────────┤
 │ 5.6.40  │ C:\tools\php-bin\php-5.6.40 │ php.exe │         │ php-cgi.exe │ PHP CGI │         │
-│ 7.1.33  │ C:\tools\php-bin\php-7.1.33 │ php.exe │         │ php-cgi.exe │ PHP CGI │         │ \  
+│ 7.1.33  │ C:\tools\php-bin\php-7.1.33 │ php.exe │         │ php-cgi.exe │ PHP CGI │         │  
 │ 7.2.34  │ C:\tools\php-bin\php-7.2.34 │ php.exe │         │ php-cgi.exe │ PHP CGI │         │
 │ 7.4.10  │ C:\tools\php-bin\php-7.4.10 │ php.exe │         │ php-cgi.exe │ PHP CGI │         │
 │ 8.0.6   │ C:\tools\php-bin\php-8.0.5  │ php.exe │         │ php-cgi.exe │ PHP CGI │ *       │
@@ -46,6 +46,22 @@ find `DATABASE_URL`.
 symfony composer install
 # Create database if not exist (an error will be throw if exist).
 symfony console doctrine:database:create # shortcut d:d:c
+```
+
+## Configure JWT
+
+### Requirements
+
+To log in via JWT, you need to create an SSL keys pair. You need OpenSSL installed on your computer.
+- Windows: [https://slproweb.com/products/Win32OpenSSL.html](https://slproweb.com/products/Win32OpenSSL.html)
+- Linux (Debian based): apt-get install openssl
+
+### Generate
+
+This command will generate new keys pair based on .env config.
+
+```shell
+symfony console lexik:jwt:generate-keypair
 ```
 
 ## Reset database with data

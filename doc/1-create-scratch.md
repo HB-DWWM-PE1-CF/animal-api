@@ -126,3 +126,59 @@ Once you finished your fixtures, use this command to populate your database with
 ```shell
 symfony console hautelook:fixtures:load --purge-with-truncate
 ```
+
+## Add JWT Token
+
+To authenticate via JWT (eg. for angular), we need to install this bundle:
+
+```shell
+symfony composer require lexik/jwt-authentication-bundle
+```
+
+### Add configuration (maybe automatically added by Flex)
+
+Add those 2 new firewall to `config/packages/security.yaml`:
+
+```yaml
+security:
+    # ...
+    firewalls:
+        # START HERE
+        login:
+            pattern: ^/api/login
+            stateless: true
+            json_login:
+                check_path: /api/login_check
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+                username_path: 'email' # Add this ONLY if you want to change property used in JSON body of the login request
+
+        api:
+            pattern:   ^/api
+            stateless: true
+            jwt: ~
+        # END HERE
+```
+
+Add the login check route to `config/routes.yaml`:
+
+```yaml
+api_login_check:
+    path: /api/login_check
+```
+
+You can also restrict access to your API by using `access_control` in `config/packages/security.yaml`:
+
+```yaml
+security:
+    # ...
+    access_control:
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+```
+
+### Check your config (retrieve the token)
+
+Use [Insomnia](https://insomnia.rest/) or [Postman](https://www.postman.com/). Bellow an example to configure Insomnia:
+
+![Insomnia JWT example](test-jwt.jpg)
