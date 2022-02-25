@@ -47,7 +47,7 @@ class GlobalStatDecorator implements OpenApiFactoryInterface
 
         $pathItem = new Model\PathItem(
             ref: 'GlobalStat',
-            post: new Model\Operation(
+            get: new Model\Operation(
                 operationId: 'getGlobalStat',
                 tags: ['GlobalStat'],
                 responses: [
