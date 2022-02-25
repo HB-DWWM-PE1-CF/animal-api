@@ -25,6 +25,25 @@ class GlobalStatControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
+    public function testExistData(): void
+    {
+        $client = static::createClient();
+        $client->loginUser($this->getUser());
+        $crawler = $client->request('GET', '/api/global-stat');
+        $response = $client->getResponse();
+
+        // Check if is JSON data.
+        $this->assertTrue($response->headers->contains('Content-Type', 'application/json'));
+        $this->assertJson($response->getContent());
+
+        // Convert JSON string to PHP array.
+        $data = json_decode($response->getContent(), true);
+
+        // Check info exist.
+        $this->assertArrayHasKey('total_animals', $data);
+        $this->assertArrayHasKey('total_animals_without_owner', $data);
+    }
+
     private function getUser(): User
     {
         $container = static::getContainer();
