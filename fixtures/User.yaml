@@ -1,0 +1,12 @@
+parameters:
+    password: '$2y$13$jKmqSVEkVuUDpiFC5TuYu.cT2YsqdXZH3Ah5W3zGsAGWknipFznbi'
+
+App\Entity\User:
+    admin:
+        email: 'foo@bar.fr'
+        password: '$password'
+        roles: ['ROLE_ADMIN']
+
+    user{0..100}:
+        email: '<email()>'
+        password: '$password'
