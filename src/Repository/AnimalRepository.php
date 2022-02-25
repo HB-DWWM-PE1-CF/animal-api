@@ -19,32 +19,28 @@ class AnimalRepository extends ServiceEntityRepository
         parent::__construct($registry, Animal::class);
     }
 
-    // /**
-    //  * @return Animal[] Returns an array of Animal objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function countAll()
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        // SELECT COUNT(*) AS total FROM animals AS a
+        $qb = $this->_em->createQueryBuilder()
+            ->select('COUNT(a) AS total')
+            ->from($this->getEntityName(), 'a')
         ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Animal
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $res = $qb->getQuery()->getOneOrNullResult();
+        return $res['total'];
     }
-    */
+
+    public function countAllWithoutOwner($startAt = null)
+    {
+        // SELECT COUNT(*) AS total FROM animals AS a WHERE a.owner IS NULL
+        $qb = $this->_em->createQueryBuilder()
+            ->select('COUNT(a) AS total')
+            ->from($this->getEntityName(), 'a')
+            ->where('a.owner IS NULL')
+        ;
+
+        $res = $qb->getQuery()->getOneOrNullResult();
+        return $res['total'];
+    }
 }
