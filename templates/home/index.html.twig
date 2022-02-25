@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to Animal API{% endblock %}
+
+{% block content %}
+<div class="card w-50 m-100-m m-3">
+    <div class="card-body">
+        <h1 class="card-title">
+            Welcome to Animal API
+        </h1>
+        <h2 class="card-subtitle mb-2 text-muted h6">
+            Your are trying to display an API backend. This is not an internet website.
+        </h2>
+        <p class="card-text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda at beatae consequatur corporis deserunt exercitationem iste mollitia nesciunt obcaecati placeat quaerat quisquam, ratione rerum saepe tempore temporibus velit, veritatis voluptatem? Adipisci, atque eligendi est ex fuga ipsam, minus obcaecati, placeat quam quis ratione totam! Eaque laudantium molestiae nostrum obcaecati, odio rem. Ab consequatur deleniti enim facilis fugit obcaecati provident voluptas?
+        </p>
+        <p class="card-text">
+            Consectetur, consequuntur dignissimos dolorem eius, eos esse facere in itaque iure non recusandae reprehenderit unde vero. A alias dolor enim id ipsam maxime nesciunt perferendis praesentium saepe voluptate. Similique, voluptatibus.
+        </p>
+        <a href="{{ path('api_doc') }}" class="card-link">Go to API Doc (OpenAPI)</a>
+        <a href="https://github.com/HB-DWWM-PE1-CF/animal-api" target="_blank" class="card-link">Github Repository</a>
+    </div>
+</div>
+{% endblock %}
